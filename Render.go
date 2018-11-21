@@ -11,7 +11,7 @@ var policy = bluemonday.UGCPolicy()
 // Render converts the given markdown code to an HTML string.
 func Render(code string) string {
 	codeBytes := aero.StringToBytesUnsafe(code)
-	codeBytes = policy.SanitizeBytes(codeBytes)
 	codeBytes = blackfriday.Run(codeBytes)
+	codeBytes = policy.SanitizeBytes(codeBytes)
 	return aero.BytesToStringUnsafe(codeBytes)
 }
