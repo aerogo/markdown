@@ -13,5 +13,11 @@ func Render(code string) string {
 	codeBytes := aero.StringToBytesUnsafe(code)
 	codeBytes = blackfriday.Run(codeBytes)
 	codeBytes = policy.SanitizeBytes(codeBytes)
+	err := checkUnclosedTags(codeBytes)
+
+	if err != nil {
+		return err.Error()
+	}
+
 	return aero.BytesToStringUnsafe(codeBytes)
 }
