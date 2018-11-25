@@ -41,6 +41,10 @@ func checkUnclosedTags(codeBytes []byte) error {
 		if b == ' ' || b == '>' {
 			if tagName != nil {
 				if isClosingTag {
+					if len(stack) == 0 {
+						return fmt.Errorf("Closing tag without opening tag: %s", tagName)
+					}
+
 					lastTagName := stack[len(stack)-1]
 
 					if !bytes.Equal(lastTagName, tagName) {
