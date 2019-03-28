@@ -3,7 +3,7 @@ package markdown
 import (
 	"github.com/aerogo/aero"
 	"github.com/microcosm-cc/bluemonday"
-	blackfriday "gopkg.in/russross/blackfriday.v2"
+	"github.com/russross/blackfriday"
 )
 
 var policy = bluemonday.UGCPolicy()
